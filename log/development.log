@@ -1,0 +1,183 @@
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (14.9ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (6.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to DeviseCreateUsers (20180601090623)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar, "last_sign_in_ip" varchar, "auth_token" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180601090623"]]
+  [1m[35m (11.6ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateSchools (20180604073246)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "schools" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "name" varchar, "address" varchar, "zip_code" varchar, "city" varchar, "openings" varchar, "phone" varchar, "email" varchar, "nb_student" varchar, "status" varchar, "latitude" varchar, "longitude" varchar)[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180604073246"]]
+  [1m[35m (6.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (4.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-06-08 19:16:12.164973"], ["updated_at", "2018-06-08 19:16:12.164973"]]
+  [1m[35m (3.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (18.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "schools"[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (3.9ms)[0m  [1m[35mCREATE TABLE "schools" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "name" varchar, "address" varchar, "zip_code" varchar, "city" varchar, "openings" varchar, "phone" varchar, "email" varchar, "nb_student" varchar, "status" varchar, "latitude" varchar, "longitude" varchar)[0m
+  [1m[35m (3.6ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (3.1ms)[0m  [1m[35mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar, "last_sign_in_ip" varchar, "auth_token" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (3.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+  [1m[35m (3.4ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "schools"[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (18.8ms)[0m  [1m[35mCREATE TABLE "schools" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "name" varchar, "address" varchar, "zip_code" varchar, "city" varchar, "openings" varchar, "phone" varchar, "email" varchar, "nb_student" varchar, "status" varchar, "latitude" varchar, "longitude" varchar)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (3.8ms)[0m  [1m[35mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar, "last_sign_in_ip" varchar, "auth_token" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (5.3ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+  [1m[35m (5.3ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35m (4.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (3.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20180604073246)[0m
+  [1m[35m (5.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20180601090623);
+
+[0m
+  [1m[35m (4.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-06-08 19:16:17.055719"], ["updated_at", "2018-06-08 19:16:17.055719"]]
+  [1m[35m (6.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = ?, "updated_at" = ? WHERE "ar_internal_metadata"."key" = ?[0m  [["value", "test"], ["updated_at", "2018-06-08 19:16:17.066253"], ["key", "environment"]]
+  [1m[35m (3.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO "schools" ("created_at", "updated_at", "name", "address", "email", "nb_student", "status", "latitude", "longitude") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2018-06-08 19:16:17.097962"], ["updated_at", "2018-06-08 19:16:17.097962"], ["name", "Ecole primaire Michel Servet"], ["address", "2-6 Rue Alsace Lorraine, 69001 Lyon"], ["email", "ecole@elementaire.com"], ["nb_student", "350"], ["status", "public"], ["latitude", "45.7720199"], ["longitude", "4.8368897999999945"]]
+  [1m[35m (8.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "schools" ("created_at", "updated_at", "name", "address", "email", "nb_student", "status", "latitude", "longitude") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2018-06-08 19:16:17.109498"], ["updated_at", "2018-06-08 19:16:17.109498"], ["name", "OGEC GROUPE SCOLAIRE SAINT DENIS"], ["address", "7 Rue Hénon, 69004 Lyon"], ["email", "ecole@elementaire.com"], ["nb_student", "100"], ["status", "public"], ["latitude", "45.779445"], ["longitude", "4.831833999999958"]]
+  [1m[35m (2.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "schools" ("created_at", "updated_at", "name", "address", "email", "nb_student", "status", "latitude", "longitude") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2018-06-08 19:16:17.115945"], ["updated_at", "2018-06-08 19:16:17.115945"], ["name", "Ecole Primaire Privée Saint Sacrement"], ["address", "15 Rue Etienne Dolet, 69003 Lyon"], ["email", "ecole@elementaire.com"], ["nb_student", "250"], ["status", "public"], ["latitude", "45.757568"], ["longitude", "4.851882"]]
+  [1m[35m (4.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "schools" ("created_at", "updated_at", "name", "address", "email", "nb_student", "status", "latitude", "longitude") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2018-06-08 19:16:17.123611"], ["updated_at", "2018-06-08 19:16:17.123611"], ["name", "Ecole maternelle publique Anatole France"], ["address", "15 Rue Louis, 69003 Lyon"], ["email", "ecole@elementaire.com"], ["nb_student", "50"], ["status", "private"], ["latitude", "45.7528455"], ["longitude", "4.888221499999986"]]
+  [1m[35m (5.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.2ms)[0m  [1m[32mINSERT INTO "schools" ("created_at", "updated_at", "name", "address", "email", "nb_student", "status", "latitude", "longitude") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2018-06-08 19:16:17.132604"], ["updated_at", "2018-06-08 19:16:17.132604"], ["name", "Ecole maternelle Condorcet"], ["address", "37 Rue Jules Massenet, 69003 Lyon"], ["email", "ecole@elementaire.com"], ["nb_student", "280"], ["status", "public"], ["latitude", "45.7482793"], ["longitude", "4.8924376999999595"]]
+  [1m[35m (5.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "schools" ("created_at", "updated_at", "name", "address", "email", "nb_student", "status", "latitude", "longitude") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2018-06-08 19:16:17.141284"], ["updated_at", "2018-06-08 19:16:17.141284"], ["name", "Ecole Maternelle Audrey Hepburn"], ["address", "8 Rue Tissot, 69009 Lyon"], ["email", "ecole@elementaire.com"], ["nb_student", "150"], ["status", "public"], ["latitude", "45.7766122"], ["longitude", "4.80246360000001"]]
+  [1m[35m (5.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "schools" ("created_at", "updated_at", "name", "address", "email", "nb_student", "status", "latitude", "longitude") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2018-06-08 19:16:17.150165"], ["updated_at", "2018-06-08 19:16:17.150165"], ["name", "École élémentaire"], ["address", "2-6 Rue Alsace Lorraine, 69001 Lyon"], ["email", "ecole@elementaire.com"], ["nb_student", "80"], ["status", "public"], ["latitude", "45.7722913"], ["longitude", "4.834741"]]
+  [1m[35m (4.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "jeremy@ynov.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "jeremy@ynov.com"], ["encrypted_password", "$2a$11$ZW6/Hh5.8X/N4wCrHx2Gq.3YJKmTiKs9MwWIjkPGM7rdHHnGh5462"], ["created_at", "2018-06-08 19:16:17.460796"], ["updated_at", "2018-06-08 19:16:17.460796"]]
+  [1m[35m (2.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO "schools" ("created_at", "updated_at", "name", "address", "email", "nb_student", "status", "latitude", "longitude") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2018-06-08 19:16:27.267071"], ["updated_at", "2018-06-08 19:16:27.267071"], ["name", "Ecole primaire Michel Servet"], ["address", "2-6 Rue Alsace Lorraine, 69001 Lyon"], ["email", "ecole@elementaire.com"], ["nb_student", "350"], ["status", "public"], ["latitude", "45.7720199"], ["longitude", "4.8368897999999945"]]
+  [1m[35m (4.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "schools" ("created_at", "updated_at", "name", "address", "email", "nb_student", "status", "latitude", "longitude") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2018-06-08 19:16:27.275611"], ["updated_at", "2018-06-08 19:16:27.275611"], ["name", "OGEC GROUPE SCOLAIRE SAINT DENIS"], ["address", "7 Rue Hénon, 69004 Lyon"], ["email", "ecole@elementaire.com"], ["nb_student", "100"], ["status", "public"], ["latitude", "45.779445"], ["longitude", "4.831833999999958"]]
+  [1m[35m (7.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "schools" ("created_at", "updated_at", "name", "address", "email", "nb_student", "status", "latitude", "longitude") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2018-06-08 19:16:27.287312"], ["updated_at", "2018-06-08 19:16:27.287312"], ["name", "Ecole Primaire Privée Saint Sacrement"], ["address", "15 Rue Etienne Dolet, 69003 Lyon"], ["email", "ecole@elementaire.com"], ["nb_student", "250"], ["status", "public"], ["latitude", "45.757568"], ["longitude", "4.851882"]]
+  [1m[35m (4.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "schools" ("created_at", "updated_at", "name", "address", "email", "nb_student", "status", "latitude", "longitude") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2018-06-08 19:16:27.294574"], ["updated_at", "2018-06-08 19:16:27.294574"], ["name", "Ecole maternelle publique Anatole France"], ["address", "15 Rue Louis, 69003 Lyon"], ["email", "ecole@elementaire.com"], ["nb_student", "50"], ["status", "private"], ["latitude", "45.7528455"], ["longitude", "4.888221499999986"]]
+  [1m[35m (4.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "schools" ("created_at", "updated_at", "name", "address", "email", "nb_student", "status", "latitude", "longitude") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2018-06-08 19:16:27.301150"], ["updated_at", "2018-06-08 19:16:27.301150"], ["name", "Ecole maternelle Condorcet"], ["address", "37 Rue Jules Massenet, 69003 Lyon"], ["email", "ecole@elementaire.com"], ["nb_student", "280"], ["status", "public"], ["latitude", "45.7482793"], ["longitude", "4.8924376999999595"]]
+  [1m[35m (6.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "schools" ("created_at", "updated_at", "name", "address", "email", "nb_student", "status", "latitude", "longitude") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2018-06-08 19:16:27.310315"], ["updated_at", "2018-06-08 19:16:27.310315"], ["name", "Ecole Maternelle Audrey Hepburn"], ["address", "8 Rue Tissot, 69009 Lyon"], ["email", "ecole@elementaire.com"], ["nb_student", "150"], ["status", "public"], ["latitude", "45.7766122"], ["longitude", "4.80246360000001"]]
+  [1m[35m (6.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "schools" ("created_at", "updated_at", "name", "address", "email", "nb_student", "status", "latitude", "longitude") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2018-06-08 19:16:27.319275"], ["updated_at", "2018-06-08 19:16:27.319275"], ["name", "École élémentaire"], ["address", "2-6 Rue Alsace Lorraine, 69001 Lyon"], ["email", "ecole@elementaire.com"], ["nb_student", "80"], ["status", "public"], ["latitude", "45.7722913"], ["longitude", "4.834741"]]
+  [1m[35m (3.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "jeremy@ynov.com"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+Started POST "/api/users/sign_in" for 127.0.0.1 at 2018-06-08 21:53:13 +0200
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"email"=>"jeremy@ynov.com", "password"=>"[FILTERED]", "session"=>{"email"=>"jeremy@ynov.com", "password"=>"[FILTERED]"}}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "jeremy@ynov.com"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (4.4ms)[0m  [1m[33mUPDATE "users" SET "auth_token" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["auth_token", "4a2ab21a932ea3609deb565cfeeca8fd"], ["updated_at", "2018-06-08 19:53:13.814212"], ["id", 1]]
+  [1m[35m (4.5ms)[0m  [1m[36mcommit transaction[0m
+Completed 200 OK in 347ms (Views: 0.2ms | ActiveRecord: 10.9ms)
+
+
+Started GET "/apipie" for 127.0.0.1 at 2018-06-08 21:55:45 +0200
+Processing by Apipie::ApipiesController#index as HTML
+  Rendering /home/jgiral/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/apipie-rails-0.5.1/app/views/apipie/apipies/index.html.erb within layouts/apipie/apipie
+  Rendered /home/jgiral/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/apipie-rails-0.5.1/app/views/apipie/apipies/_languages.erb (0.3ms)
+  Rendered /home/jgiral/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/apipie-rails-0.5.1/app/views/apipie/apipies/index.html.erb within layouts/apipie/apipie (32.2ms)
+Completed 200 OK in 133ms (Views: 42.5ms)
+
+
+Started GET "/apipie/stylesheets/bundled/bootstrap.min.css" for 127.0.0.1 at 2018-06-08 21:55:45 +0200
+Started GET "/apipie/stylesheets/bundled/prettify.css" for 127.0.0.1 at 2018-06-08 21:55:45 +0200
+Started GET "/apipie/stylesheets/bundled/bootstrap-responsive.min.css" for 127.0.0.1 at 2018-06-08 21:55:45 +0200
+Started GET "/apipie/stylesheets/application.css" for 127.0.0.1 at 2018-06-08 21:55:45 +0200
+Started GET "/apipie/javascripts/bundled/jquery.js" for 127.0.0.1 at 2018-06-08 21:55:45 +0200
+Started GET "/apipie/javascripts/bundled/bootstrap-collapse.js" for 127.0.0.1 at 2018-06-08 21:55:45 +0200
+Started GET "/apipie/javascripts/bundled/prettify.js" for 127.0.0.1 at 2018-06-08 21:55:45 +0200
+Started GET "/apipie/javascripts/apipie.js" for 127.0.0.1 at 2018-06-08 21:55:45 +0200
